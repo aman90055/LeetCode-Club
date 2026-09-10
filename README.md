@@ -1,2 +1,5 @@
-# LeetCode-Club
-Official GitHub repository of the LeetCode Club at Haridwar University — focused on DSA, competitive programming, problem solving, coding contests, peer learning, and technical growth.
+# 🚀 LeetCode Club — Haridwar University
+
+> Learn • Code • Compete • Grow
+
+Official coding community for students of Haridwar University, focused on Data Structures & Algorithms, problem solving, competitive programming, coding contests, and peer learning.
