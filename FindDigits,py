@@ -1,0 +1,22 @@
+#!/bin/python3
+
+import os
+
+def findDigits(n):
+    count = 0
+    # Convert integer to string to easily iterate through its digits
+    for digit_char in str(n):
+        digit = int(digit_char)
+        # Avoid division by zero and check if it's a divisor
+        if digit != 0 and n % digit == 0:
+            count += 1
+    return count
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    t = int(input().strip())
+    for t_itr in range(t):
+        n = int(input().strip())
+        result = findDigits(n)
+        fptr.write(str(result) + '\n')
+    fptr.close()
