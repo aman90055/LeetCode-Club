@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int migratoryBirds(int arr_count, int* arr) {
+   
+    int freq[6] = {0};
+    
+    
+    for (int i = 0; i < arr_count; i++) {
+        freq[arr[i]]++;
+    }
+    
+    int max_freq = 0;
+    int most_frequent_bird = 0;
+    
+    
+    for (int i = 1; i <= 5; i++) {
+        if (freq[i] > max_freq) {
+            max_freq = freq[i];
+            most_frequent_bird = i;
+        }
+    }
+    
+    return most_frequent_bird;
+}
+
+int main() {
+    int n;
+    
+    
+    if (scanf("%d", &n) != 1) return 1;
+    
+  
+    int* arr = (int*)malloc(n * sizeof(int));
+    
+   
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+   
+    int result = migratoryBirds(n, arr);
+    printf("%d\n", result);
+    
+   
+    free(arr);
+    
+    return 0;
+}
