@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts INTEGER_ARRAY grades as parameter.
+ * result_count is a pointer to an integer to store the size of the returned array.
+ */
+int* gradingStudents(int grades_count, int* grades, int* result_count) {
+    // Set the size of the returning array
+    *result_count = grades_count;
+    
+    // Allocate memory for the result array
+    int* rounded_grades = (int*)malloc(grades_count * sizeof(int));
+    
+    for (int i = 0; i < grades_count; i++) {
+        // Rule 1: If grade is less than 38, no rounding occurs
+        if (grades[i] < 38) {
+            rounded_grades[i] = grades[i];
+        } else {
+            // Find the remainder when divided by 5
+            int remainder = grades[i] % 5;
+            
+            // Rule 2: If the difference to the next multiple of 5 is less than 3
+            // This means the remainder is either 3 or 4
+            if (remainder >= 3) {
+                rounded_grades[i] = grades[i] + (5 - remainder);
+            } else {
+                // Rule 3: Difference is 3 or higher, no rounding
+                rounded_grades[i] = grades[i];
+            }
+        }
+    }
+    
+    return rounded_grades;
+}
+
+int main() {
+    int grades_count;
+    
+    
+    if (scanf("%d", &grades_count) != 1) return 1;
+    
+    int* grades = (int*)malloc(grades_count * sizeof(int));
+    
+   
+    for (int i = 0; i < grades_count; i++) {
+        scanf("%d", &grades[i]);
+    }
+    
+    int result_count;
+    int* result = gradingStudents(grades_count, grades, &result_count);
+    
+   
+    for (int i = 0; i < result_count; i++) {
+        printf("%d\n", result[i]);
+    }
+    
+    
+    free(grades);
+    free(result);
+    
+    return 0;
+}
