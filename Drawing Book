@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int pageCount(int n, int p) {
+    
+    int front_turns = p / 2;
+    
+    
+    int back_turns = (n / 2) - (p / 2);
+    
+   
+    return (front_turns < back_turns) ? front_turns : back_turns;
+}
+
+int main() {
+    int n, p;
+    
+  
+    if (scanf("%d", &n) != 1) return 1;
+    if (scanf("%d", &p) != 1) return 1;
+    
+   
+    int result = pageCount(n, p);
+    printf("%d\n", result);
+    
+    return 0;
+}
