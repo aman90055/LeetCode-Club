@@ -1,0 +1,37 @@
+* date - 05/10/2026
+
+*  Question Link - https://www.hackerrank.com/challenges/simple-array-sum/problem?isFullScreen=true
+______________________________________________________________________________________________________________________________________-
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int simpleArraySum(int ar_count, int* ar) {
+    int sum = 0;
+    
+    for (int i = 0; i < ar_count; i++) {
+        sum += ar[i];
+    }
+    
+    return sum;
+}
+
+
+int main() {
+    int n;
+    
+    if (scanf("%d", &n) != 1) return 1;
+    
+    int* ar = (int*)malloc(n * sizeof(int));
+    
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &ar[i]);
+    }
+    
+    int result = simpleArraySum(n, ar);
+    printf("%d\n", result);
+    
+    free(ar);
+    
+    return 0;
+}
