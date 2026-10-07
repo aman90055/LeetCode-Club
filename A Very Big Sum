@@ -1,0 +1,45 @@
+/*  
+*  Date - 07/10/2026
+
+* Question Link - https://www.hackerrank.com/challenges/a-very-big-sum/problem?isFullScreen=true
+
+
+
+/*
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+long long aVeryBigSum(int ar_count, long long* ar) {
+    long long sum = 0;
+    
+    for (int i = 0; i < ar_count; i++) {
+        sum += ar[i];
+    }
+    
+    return sum;
+}
+
+int main() {
+    int n;
+    
+    if (scanf("%d", &n) != 1) return 1;
+    
+    long long* ar = (long long*)malloc(n * sizeof(long long));
+    
+    for (int i = 0; i < n; i++) {
+        scanf("%lld", &ar[i]);
+    }
+    
+    long long result = aVeryBigSum(n, ar);
+    printf("%lld\n", result);
+    
+    free(ar);
+    
+    return 0;
+}
