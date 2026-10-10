@@ -1,0 +1,35 @@
+/*
+*
+*  Date - 10/10/2026
+*
+*  Question Link - https://leetcode.com/problems/container-with-most-water/submissions/2168071234/
+*
+*
+*
+*/
+
+
+int maxArea(int* height, int heightSize) {
+    int left = 0;
+    int right = heightSize - 1;
+    int max_area = 0;
+    
+    while (left < right) {
+        int width = right - left;
+        
+        int current_height = height[left] < height[right] ? height[left] : height[right];
+        int current_area = width * current_height;
+        
+        if (current_area > max_area) {
+            max_area = current_area;
+        }
+        
+        if (height[left] < height[right]) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+    
+    return max_area;
+}
