@@ -1,0 +1,33 @@
+//
+   Date - 11/10/2026
+
+   Question Link - https://www.hackerrank.com/challenges/staircase/problem?isFullScreen=true
+
+
+/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void staircase(int n) {
+    for (int i = 1; i <= n; i++) {
+        for (int space = 0; space < n - i; space++) {
+            printf(" ");
+        }
+        for (int hash = 0; hash < i; hash++) {
+            printf("#");
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int n;
+    
+    if (scanf("%d", &n) != 1) return 1;
+    
+    staircase(n);
+    
+    return 0;
+}
