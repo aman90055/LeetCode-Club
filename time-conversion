@@ -8,54 +8,54 @@
 */
 
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+#include <assert.h>
+#include <ctype.h>
+#include <limits.h>
+#include <math.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-class Result {
-
-    public static String timeConversion(String s) {
-        String period = s.substring(s.length() - 2);
-        
-        String time = s.substring(0, s.length() - 2);
-        String[] parts = time.split(":");
-        
-        int hour = Integer.parseInt(parts[0]);
-        
-        if (period.equals("AM")) {
-            if (hour == 12) {
-                parts[0] = "00";
-            }
-        } 
-        else {
-            if (hour != 12) {
-                hour += 12;
-                parts[0] = String.valueOf(hour);
-            }
+char* timeConversion(char* s) {
+    int hh, mm, ss;
+    char am_pm[3];
+    
+    sscanf(s, "%d:%d:%d%s", &hh, &mm, &ss, am_pm);
+    
+    if (strcmp(am_pm, "AM") == 0) {
+        if (hh == 12) {
+            hh = 0; // 12 AM becomes 00
         }
-        
-        return parts[0] + ":" + parts[1] + ":" + parts[2];
+    } else { 
+        if (hh != 12) {
+            hh += 12; // 1 PM to 11 PM adds 12 hours
+        }
     }
-
+    
+    char* result = malloc(10 * sizeof(char));
+    
+    sprintf(result, "%02d:%02d:%02d", hh, mm, ss);
+    
+    return result;
 }
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+int main()
+{
+    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
 
-        String s = bufferedReader.readLine();
+    char* s = malloc(1024 * sizeof(char));
+    scanf("%[^\n]", s);
 
-        String result = Result.timeConversion(s);
+    char* result = timeConversion(s);
 
-        bufferedWriter.write(result);
-        bufferedWriter.newLine();
+    fprintf(fptr, "%s\n", result);
 
-        bufferedReader.close();
-        bufferedWriter.close();
-    }
+    fclose(fptr);
+    free(result);
+    free(s);
+
+    return 0;
 }
